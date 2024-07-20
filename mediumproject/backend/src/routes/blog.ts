@@ -22,9 +22,9 @@ blogRouter.use("/*", async (c, next) => {
 
     try {
         const user = await verify(authHeader, c.env.JWT_SECRET);
+        console.log(user)
 
         if (user) {
-            //@ts-ignore
             c.set("userId", user.id);
             await next();
         }
@@ -138,6 +138,16 @@ blogRouter.get('/:id', async (c) => {
         const blog = await prisma.blog.findFirst({
             where: {
                 id: Number(id)
+            },
+            select: {
+                id: true,
+                title: true,
+                content: true,
+                author: {
+                    select: {
+                        name: true  
+                    }
+                }
             }
         })
         return c.json({
