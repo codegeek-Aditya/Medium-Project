@@ -55,6 +55,7 @@ export const useBlogs = () => {
             )
             .catch(error => {
                 alert(`Error fetching blogs`)
+                console.log(error)
             })
     }, [])
 
