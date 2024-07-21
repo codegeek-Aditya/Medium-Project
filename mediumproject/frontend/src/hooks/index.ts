@@ -25,7 +25,8 @@ export const useBlog = ({ id }: { id: string }) => {
                 setLoading(false)
             })
             .catch(error => {
-                console.log(`Error fetching all the blogs`, error)
+                alert(`Error fetching all the blogs`)
+                console.log(error)
             })
     }, [])
 
