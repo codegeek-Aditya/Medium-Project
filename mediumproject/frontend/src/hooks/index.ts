@@ -53,6 +53,9 @@ export const useBlogs = () => {
                 setLoading(false)
             }
             )
+            .catch(error => {
+                alert(`Error fetching blogs`)
+            })
     }, [])
 
     return {

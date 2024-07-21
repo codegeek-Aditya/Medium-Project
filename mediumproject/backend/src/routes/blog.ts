@@ -26,6 +26,7 @@ blogRouter.use("/*", async (c, next) => {
 
         if (user) {
             c.set("userId", user.id);
+            console.log(user.id)
             await next();
         }
         else {
