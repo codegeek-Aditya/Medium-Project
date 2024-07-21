@@ -24,6 +24,9 @@ export const useBlog = ({ id }: { id: string }) => {
                 setBlog(response.data.blog)
                 setLoading(false)
             })
+            .catch(error => {
+                alert(`Error fetching all the blogs`)
+            })
     }, [])
 
     return {

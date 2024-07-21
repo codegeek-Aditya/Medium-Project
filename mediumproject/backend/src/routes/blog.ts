@@ -145,7 +145,7 @@ blogRouter.get('/:id', async (c) => {
                 content: true,
                 author: {
                     select: {
-                        name: true  
+                        name: true
                     }
                 }
             }
