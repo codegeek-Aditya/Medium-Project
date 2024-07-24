@@ -21,20 +21,16 @@ blogRouter.use("/*", async (c, next) => {
     const authHeader = c.req.header("authorization") || "";
 
     try {
+        console.log(`AuthHeader Response : `, authHeader)
         const user = await verify(authHeader, c.env.JWT_SECRET);
-        console.log(user)
-
+        console.log(`User`, user)
         if (user) {
-            c.set("userId", user.id);
-            console.log(user.id)
+            c.set("userId", String(user.id));
+            // console.log(typeof user.id) // number
+            // console.log(user.id)
             await next();
         }
-        else {
-            c.status(403)
-            return c.json({
-                message: "You aren't logged in"
-            })
-        }
+
     } catch (error) {
         c.status(403)
         return c.json({
@@ -104,7 +100,7 @@ blogRouter.put('/', async c => {
 // all blogs routing 
 // TODO: add Pagination
 blogRouter.get('/bulk', async c => {
-    const body = await c.req.json()
+
     const prisma = new PrismaClient(({
         datasourceUrl: c.env.DATABASE_URL
     })).$extends(withAccelerate())
@@ -122,7 +118,6 @@ blogRouter.get('/bulk', async c => {
         }
     }
     )
-
     return c.json({
         blog
     })

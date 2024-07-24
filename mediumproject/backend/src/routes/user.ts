@@ -10,14 +10,17 @@ export const userRouter = new Hono<{
     Bindings: {
         DATABASE_URL: string,
         JWT_SECRET: string
-    }
+    },
 }>()
 
 // SignUp Routing
 userRouter.post('/signup', async c => {
     // for accessing/getting the body
     const body = await c.req.json()
+    console.log(`Body response is`, body)
+
     const { success } = signupInput.safeParse(body)
+    console.log(`Success response is: `, success)
     if (!success) {
         c.status(411)
         return c.json({
@@ -42,6 +45,7 @@ userRouter.post('/signup', async c => {
         const jwt = await sign({
             id: user.id
         }, c.env.JWT_SECRET)
+        console.log(`Jwt response in user.ts`, jwt)
 
         return c.text(`User successfully created and jwt of the user is ${jwt}`)
     } catch (error) {
@@ -62,7 +66,7 @@ userRouter.post('/signin', async c => {
     }
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL
-    })
+    }).$extends(withAccelerate())
 
     try {
         const user = await prisma.user.findUnique({
@@ -80,7 +84,7 @@ userRouter.post('/signin', async c => {
         const jwt = await sign({
             id: user.id
         }, c.env.JWT_SECRET)
-        return c.text(`Signed in successfully and the jwt is ${jwt}`)
+        return c.text(jwt)
     } catch (error) {
         c.status(411)
         return c.text(`Invalid`)
