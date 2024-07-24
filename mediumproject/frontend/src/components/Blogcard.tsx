@@ -8,7 +8,7 @@ interface BlogCardProps {
 
 export const Blogcard = ({ authorName, title, content, publishedDate }: BlogCardProps) => {
     return (
-        <div className="flex flex-col h-screeen justify-center min-w-md">
+        <div className="flex flex-col h-screeen justify-center max-w-screen-lg min-w-max ">
             <div className="font-light">
                 <Avatar name={authorName} /> {authorName} | {publishedDate}
             </div>

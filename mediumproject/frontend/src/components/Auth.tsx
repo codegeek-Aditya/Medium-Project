@@ -20,7 +20,7 @@ export const Auth = ({ type }: { type: "signin" | "signup" }) => {
             localStorage.setItem("token", jwt)
             await axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
                 headers: {
-                    'Authorization': jwt,
+                    'authorization': jwt,
                 }
             }
             );

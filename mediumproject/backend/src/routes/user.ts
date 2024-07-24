@@ -46,8 +46,7 @@ userRouter.post('/signup', async c => {
             id: user.id
         }, c.env.JWT_SECRET)
         console.log(`Jwt response in user.ts`, jwt)
-
-        return c.text(`User successfully created and jwt of the user is ${jwt}`)
+        return c.text(jwt)
     } catch (error) {
         c.status(411)
         return c.text(`User already exists with same email`)
