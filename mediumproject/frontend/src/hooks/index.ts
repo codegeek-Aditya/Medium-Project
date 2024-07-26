@@ -4,9 +4,9 @@ import axios from 'axios'
 
 
 export interface Blog {
-    "content": string;
-    "title": string;
     "id": number;
+    "title": string;
+    "content": string;
     "author": {
         "name": string;
     }
@@ -27,7 +27,7 @@ export const useBlog = ({ id }: { id: string }) => {
                 setLoading(false)
             })
             .catch(error => {
-                alert(`Error fetching all the blogs`)
+                alert(`Error fetching the blog`)
                 console.log(error)
             })
     }, [id])
