@@ -4,7 +4,7 @@ interface BlogCardProps {
     authorName: string;
     title: string;
     content: string;
-    publishedDate: string;
+    publishedDate?: string;
     id: number;
 }
 
@@ -13,7 +13,7 @@ export const Blogcard = ({ id, authorName, title, content, publishedDate }: Blog
         <Link to={`/blog/${id}`}>
             <div className="flex flex-col h-screeen justify-center max-w-screen-lg min-w-max mb-4 border p-4 rounded-md cursor-pointer">
                 <div className="font-light">
-                    <Avatar name={authorName.toUpperCase()} /> {authorName} | {publishedDate}
+                    <Avatar name={authorName.toUpperCase()} /> {authorName} 
                 </div>
                 <div className="font-bold pt-2">
                     {title}

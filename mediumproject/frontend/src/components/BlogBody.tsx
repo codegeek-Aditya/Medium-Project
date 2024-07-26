@@ -12,7 +12,7 @@ export const BlogBody = ({ blog }: { blog: Blog }) => {
                             {blog?.title}
                         </div>
                         <div className="text-slate-500 text-sm font-extralight">
-                            Posted on 2nd December, 2024
+                            Posted on : {Date.now()}
                         </div>
                         <div className="pt-4 space-x-1 text-[1.1rem] text-justify mt-2">
                             {blog?.content}
