@@ -3,23 +3,25 @@ import { BACKEND_URL } from "../config"
 import axios from 'axios'
 
 
-interface Blog {
-    "content": string,
-    "title": string,
-    "id": number
+export interface Blog {
+    "content": string;
+    "title": string;
+    "id": number;
     "author": {
-        "name": string
+        "name": string;
     }
 }
-
 
 export const useBlog = ({ id }: { id: string }) => {
     const [loading, setLoading] = useState(true)
     const [blog, setBlog] = useState<Blog>()
 
-
     useEffect(() => {
-        axios.get(`${BACKEND_URL}/api/v1/blog/${id}`)
+        axios.get(`${BACKEND_URL}/api/v1/blog/${id}`, {
+            headers: {
+                Authorization: localStorage.getItem("token")
+            }
+        })
             .then(response => {
                 setBlog(response.data.blog)
                 setLoading(false)
@@ -28,16 +30,13 @@ export const useBlog = ({ id }: { id: string }) => {
                 alert(`Error fetching all the blogs`)
                 console.log(error)
             })
-    }, [])
+    }, [id])
 
     return {
         loading,
         blog
     }
-
-
 }
-
 
 export const useBlogs = () => {
     const [loading, setLoading] = useState(true)
@@ -46,7 +45,7 @@ export const useBlogs = () => {
     useEffect(() => {
         axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
             headers: {
-                Authorization: localStorage.getItem("token")   
+                Authorization: localStorage.getItem("token")
             }
         })
             .then(response => {

@@ -1,30 +1,31 @@
+import { Link } from "react-router-dom";
 
 interface BlogCardProps {
     authorName: string;
     title: string;
     content: string;
-    publishedDate: string
+    publishedDate: string;
+    id: number;
 }
 
-export const Blogcard = ({ authorName, title, content, publishedDate }: BlogCardProps) => {
+export const Blogcard = ({ id, authorName, title, content, publishedDate }: BlogCardProps) => {
     return (
-        <div className="flex flex-col h-screeen justify-center max-w-screen-lg min-w-max mb-4 border p-4 rounded-md">
-            <div className="font-light">
-                <Avatar name={authorName.toUpperCase()} /> {authorName} | {publishedDate}
+        <Link to={`/blog/${id}`}>
+            <div className="flex flex-col h-screeen justify-center max-w-screen-lg min-w-max mb-4 border p-4 rounded-md cursor-pointer">
+                <div className="font-light">
+                    <Avatar name={authorName.toUpperCase()} /> {authorName} | {publishedDate}
+                </div>
+                <div className="font-bold pt-2">
+                    {title}
+                </div>
+                <div className="">
+                    {content.slice(0, 100) + "..."}
+                </div>
+                <div className="font-extralight pt-2">
+                    {`${Math.ceil(content.length / 100)} minute(s) read`}
+                </div>
             </div>
-            <div className="font-bold pt-2">
-                {title}
-            </div>
-            <div className="">
-                {content.slice(0, 100) + "..."}
-            </div>
-            <div className="font-extralight pt-2">
-                {`${Math.ceil(content.length / 100)} minute(s) read`}
-            </div>
-            <div className="w-full border-2 mt-3">
-                {/* bottom border */}
-            </div>
-        </div>
+        </Link>
     )
 }
 
