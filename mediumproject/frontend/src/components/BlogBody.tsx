@@ -4,7 +4,7 @@ import { Avatar } from "./Blogcard"
 
 export const BlogBody = ({ blog }: { blog: Blog }) => {
     if (blog)
-            return (
+        return (
             <div>
                 <div className="grid grid-cols-12 pt-12 max-w-screen-xl p-4 ml-14">
                     <div className="col-span-8 m-4">
@@ -15,7 +15,7 @@ export const BlogBody = ({ blog }: { blog: Blog }) => {
                             Posted on : {Date.now()}
                         </div>
                         <div className="pt-4 space-x-1 text-[1.1rem] text-justify mt-2">
-                            {blog?.content}
+                            {blog?.content} 
                         </div>
                     </div>
                     <div className="col-span-4 w-full pt-6">

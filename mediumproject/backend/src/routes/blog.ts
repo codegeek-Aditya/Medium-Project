@@ -100,7 +100,6 @@ blogRouter.put('/', async c => {
 // all blogs routing 
 // TODO: add Pagination
 blogRouter.get('/bulk', async c => {
-
     const prisma = new PrismaClient(({
         datasourceUrl: c.env.DATABASE_URL
     })).$extends(withAccelerate())
@@ -154,3 +153,5 @@ blogRouter.get('/:id', async (c) => {
         return c.json({ message: `Error while fetching blogs` })
     }
 })
+
+

@@ -1,6 +1,5 @@
 ## Techstack used in this project - 
 
-
 Hono as routing library -  hono works with cloudflare workers where as express does not.
 React in the frontend
 Cloudfare workers in the backend
